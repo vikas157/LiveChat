@@ -10,19 +10,19 @@ const AddPost = ({newpost}) => {
   const add = event => {
     event.preventDefault();
     const post = {
-    id: Date.now().toString(),
-    title,
-    content,
-    user: {
+      id: Date.now().toString(),
+      title,
+      content,
+      user: {
       uid: '1111',
       displayName: 'Steve Kinney',
       email: 'steve@mailinator.com',
       photoURL: 'http://placekitten.com/g/200/200',
-    },
-    favorites: 0,
-    comments: 0,
-    createdAt: new Date(),
-  };
+      },
+      favorites: 0,
+      comments: 0,
+      createdAt: new Date(),
+    };
   newpost(post);
   setTitle("");
   setContent("");

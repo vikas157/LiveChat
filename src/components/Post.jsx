@@ -10,7 +10,7 @@ const Post = (props) => {
         <h3>{title}</h3>
         <div>{content}</div>
       </div>
-      <div className="Post--meta">
+        <div className="Post--meta">
         <div>
           <p>
             <span role="img" aria-label="star">
