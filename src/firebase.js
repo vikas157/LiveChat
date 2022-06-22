@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc , setDoc } from "firebase/firestore";
 /* import { getAnalytics } from "firebase/analytics"; */
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,4 +19,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 /* const analytics = getAnalytics(app); */
-export const firestore = getFirestore(app);
+const firestore = getFirestore(app);
+const docref = doc(firestore,'sample/user');
+setDoc(docref,{ name: 'vikas', id : 25  });
