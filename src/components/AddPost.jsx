@@ -33,6 +33,7 @@ const AddPost = ({ name, newpost }) => {
         position: "fixed",
         bottom: 0,
         left: 0,
+        right: 0,
         width: "100%",
       }}
     >
@@ -47,17 +48,17 @@ const AddPost = ({ name, newpost }) => {
       /> */}
       <TextField
         variant="filled"
-        sx={{ flexGrow: 5 }}
+        sx={{ flexGrow: 5, marginBottom: ".1rem" }}
         type="text"
         name="content"
-        placeholder="message"
+        placeholder="Type here...."
         value={content}
         onChange={(e) => {
           setContent(e.target.value);
         }}
       />
       <Button variant="contained" type="submit">
-        <SendIcon sx={{ pr: ".5rem", flexGrow: 1 }} />
+        <SendIcon sx={{ pr: ".5rem", flexGrow: 1, m: 0 }} />
         Send
       </Button>
     </form>
