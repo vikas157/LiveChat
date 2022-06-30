@@ -1,39 +1,34 @@
-import React from 'react';
+import React from "react";
 
-import moment from 'moment';
+import moment from "moment";
+import { Typography } from "@mui/material";
 
 const Post = (props) => {
-  const { title, content, user,createdAt, stars, comments } = props;
+  const { content, user, createdAt } = props;
   return (
-    <article className="Post">
-      <div className="Post--content">
-        <h3>{title}</h3>
-        <div>{content}</div>
+    <>
+      <div
+        style={{
+          backgroundColor: "#90e0ef",
+          margin: ".5rem",
+          padding: "0 2rem",
+          width: "fit-content",
+          borderRadius: "10px ",
+          clipPath: "polygon(100% 0, 100% 100%, 8% 100%, 8% 11%, 0 0)",
+        }}
+      >
+        <Typography variant="caption" display="block" gutterBottom>
+          {user}
+        </Typography>
+
+        <Typography variant="body1" gutterBottom sx={{ paddingLeft: "1rem" }}>
+          {content}
+        </Typography>
+        <Typography variant="caption" gutterBottom>
+          {moment(createdAt).calendar()}
+        </Typography>
       </div>
-        <div className="Post--meta">
-        <div>
-          <p>
-            <span role="img" aria-label="star">
-              ⭐️
-            </span>
-            {stars}
-          </p>
-          <p>
-            <span role="img" aria-label="comments">
-              🙊
-            </span>
-            {comments}
-          </p>
-        
-          <p>Posted by {user.displayName}</p>
-          <p>{moment(createdAt).calendar()}</p>
-        </div>
-        <div>
-          <button className="star">Star</button>
-          <button className="delete">Delete</button>
-        </div>
-      </div>
-    </article>
+    </>
   );
 };
 

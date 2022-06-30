@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import "../firebase";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import { Container, Box } from "@mui/material";
 
-const AddPost = ({ newpost }) => {
-  const [title, setTitle] = useState();
+const AddPost = ({ name, newpost }) => {
+  /* const [title, setTitle] = useState(); */
 
   const [content, setContent] = useState();
 
@@ -9,25 +14,29 @@ const AddPost = ({ newpost }) => {
     event.preventDefault();
     const post = {
       id: Date.now().toString(),
-      title,
       content,
-      user: {
-        uid: "1111",
-        displayName: "xyz",
-        email: "abcd@gmail.com",
-        photoURL: "http://placekitten.com/g/200/200",
-      },
-      favorites: 0,
-      comments: 0,
+      user: name,
       createdAt: new Date(),
     };
     newpost(post);
-    setTitle("");
+    /* setTitle(""); */
     setContent("");
   };
   return (
-    <form onSubmit={add} className="AddPost">
-      <input
+    <form
+      onSubmit={add}
+      className="AddPost"
+      style={{
+        display: "flex",
+
+        backgroundColor: "gray",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        width: "100%",
+      }}
+    >
+      {/* <input
         type="text"
         name="title"
         placeholder="Title"
@@ -35,17 +44,22 @@ const AddPost = ({ newpost }) => {
         onChange={(e) => {
           setTitle(e.target.value);
         }}
-      />
-      <input
+      /> */}
+      <TextField
+        variant="filled"
+        sx={{ flexGrow: 5 }}
         type="text"
         name="content"
-        placeholder="Body"
+        placeholder="message"
         value={content}
         onChange={(e) => {
           setContent(e.target.value);
         }}
       />
-      <input className="create" type="submit" value="Create Post" />
+      <Button variant="contained" type="submit">
+        <SendIcon sx={{ pr: ".5rem", flexGrow: 1 }} />
+        Send
+      </Button>
     </form>
   );
 };

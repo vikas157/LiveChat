@@ -1,3 +1,12 @@
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "@mui/material/Drawer";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import React, { useState } from "react";
+import { Logout, Settings } from "@mui/icons-material";
+import TagIcon from "@mui/icons-material/Tag";
+import { Link } from "react-router-dom";
 import {
   alpha,
   AppBar,
@@ -14,14 +23,11 @@ import {
   Avatar,
   ListItemIcon,
   Paper,
+  List,
+  ListItem,
+  ListItemButton,
+  CssBaseline,
 } from "@mui/material";
-import React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useState } from "react";
-import { Logout, Settings } from "@mui/icons-material";
 
 const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -34,9 +40,16 @@ const Search = styled("div")(({ theme }) => ({
   flexGrow: 4,
 }));
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [open, setOpen] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const drawerWidth = 240;
+  const showSidebar = () => setSidebar(!sidebar);
+  const SidebarData = [
+    { title: "Chatroom1", path: "/Chatroom1", icon: <TagIcon /> },
+    { title: "Chatroom2", path: "/Chatroom2", icon: <TagIcon /> },
+  ];
+
   return (
     <AppBar position="sticky">
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -45,10 +58,61 @@ const Navbar = () => {
           edge="start"
           color="inherit"
           aria-label="menu"
-          sx={{ flexGrow: 1, mr: 2, display: { xs: "block", sm: "none" } }}
+          sx={{ mr: 2, display: { xs: "block" } }}
+          onClick={showSidebar}
         >
           <MenuIcon />
         </IconButton>
+        <Drawer
+          open={sidebar}
+          onClose={showSidebar}
+          sx={{
+            display: { xs: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              color: "inherit",
+            },
+          }}
+          onClick={showSidebar}
+        >
+          &nbsp;
+          <List>
+            <h2>Channals</h2>
+            <CssBaseline />
+            <Divider />
+            {SidebarData.map((item, index) => {
+              return (
+                <>
+                  <ListItem disablePadding key={index} flex={1}>
+                    <ListItemButton>
+                      <Link
+                        to={item.path}
+                        style={{
+                          textDecoration: "none",
+                          display: "flex",
+                          width: "100%",
+                          color: "inherit",
+                          margin: ".1rem",
+                        }}
+                      >
+                        <div>{item.icon}</div>
+                        <div
+                          style={{
+                            textDecoration: "none",
+                            padding: "5px",
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                      </Link>
+                    </ListItemButton>
+                  </ListItem>
+                </>
+              );
+            })}
+          </List>
+        </Drawer>
 
         <Typography
           variant="h6"

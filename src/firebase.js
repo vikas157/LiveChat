@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc , setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 /* import { getAnalytics } from "firebase/analytics"; */
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -13,12 +13,15 @@ const firebaseConfig = {
   storageBucket: "think-piece-e203c.appspot.com",
   messagingSenderId: "886137808683",
   appId: "1:886137808683:web:74f3e273449f6a537bc76e",
-  measurementId: "G-BV41H6LCJQ"
+  measurementId: "G-BV41H6LCJQ",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-/* const analytics = getAnalytics(app); */
-const firestore = getFirestore(app);
-const docref = doc(firestore,'sample/user');
-setDoc(docref,{ name: 'vikas', id : 25  });
+export const firebase = () => {
+  const app = initializeApp(firebaseConfig);
+  /* const analytics = getAnalytics(app); */
+  const path = "";
+  const db = getFirestore(app);
+  const docref = doc(db, path);
+  setDoc(docref, { name: "vikas", id: 9 });
+};
